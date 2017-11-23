@@ -62,6 +62,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\Familie.cs" />
+    <Compile Include="Data\Indkøb.cs" />
+    <Compile Include="Data\Person.cs" />
+    <Compile Include="Data\Forbrug.cs" />
+    <Compile Include="Data\Pindelisteindkøb.cs" />
+    <Compile Include="Data\Pindelistevare.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -92,6 +98,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Billeder\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

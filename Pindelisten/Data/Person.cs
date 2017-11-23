@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Pindelisten
     /// <summary>
     /// Person der kan købe varer på pindelisten
     /// </summary>
+    [Serializable]
     public class Person
     {
         #region Properties og attributter
@@ -21,7 +23,7 @@ namespace Pindelisten
         /// <summary>
         /// Liste af forbrug for personen
         /// </summary>
-        public List<Forbrug> Forbrug { get; set; }
+        public ObservableCollection<Forbrug> Forbrug { get; set; }
 
         #endregion
 
@@ -30,7 +32,7 @@ namespace Pindelisten
         public Person(string navn)
         {
             Navn = navn;
-            Forbrug = new List<Forbrug>();
+            Forbrug = new ObservableCollection<Forbrug>();
         }
 
         #endregion

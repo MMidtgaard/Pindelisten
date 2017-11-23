@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Diagnostics;
 
 namespace Pindelisten
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PindelisteView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PindelisteView : UserControl
     {
-        public MainWindow()
+        public PindelisteView()
         {
             InitializeComponent();
-        }
-
-        private void PindelisteViewControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            PindelisteViewModel pindelisteViewModelObject = new PindelisteViewModel();
-            pindelisteViewModelObject.HentLister();
-            PindelisteViewControl.DataContext = pindelisteViewModelObject;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Pindelisten
     /// <summary>
     /// En vare som kan købes på pindelisten.
     /// </summary>
+    [Serializable]
     public class Pindelistevare
     {
         #region Properties

@@ -9,6 +9,7 @@ namespace Pindelisten
     /// <summary>
     /// Et indkøb foretaget af en familie af en specifik vare der kan købes på pindelisten.
     /// </summary>
+    [Serializable]
     public class Pindelisteindkøb : Indkøb
     {
         #region Properties

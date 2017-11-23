@@ -9,6 +9,7 @@ namespace Pindelisten
     /// <summary>
     /// En udgift som en familie har haft til arrangementet
     /// </summary>
+    [Serializable]
     public class Indkøb
     {
         #region Properties

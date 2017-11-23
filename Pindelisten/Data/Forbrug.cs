@@ -9,6 +9,7 @@ namespace Pindelisten
     /// <summary>
     /// Et forbrug af en vare
     /// </summary>
+    [Serializable]
     public class Forbrug
     {
         #region Properties og attributter
@@ -16,7 +17,7 @@ namespace Pindelisten
         /// <summary>
         /// Tidspunktet for forbruget
         /// </summary>
-        public DateTime tidspunkt { get; }
+        public DateTime Tidspunkt { get; }
 
         /// <summary>
         /// Reference til en varetype
@@ -30,7 +31,7 @@ namespace Pindelisten
         public Forbrug(Pindelistevare varetype)
         {
             Varetype = varetype;
-            tidspunkt = DateTime.Now;
+            Tidspunkt = DateTime.Now;
         }
 
         #endregion

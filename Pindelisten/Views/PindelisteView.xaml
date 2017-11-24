@@ -9,12 +9,29 @@
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
-        <HierarchicalDataTemplate x:Key = "familieTemplate" DataType="{x:Type local:PindelisteViewModel}" ItemsSource="{Binding Path=Familier}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock  Text="{Binding Path=Navn}" FontWeight="Bold" FontSize="18"/>
-            </StackPanel>
+
+
+        <HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">
+            <TextBlock  Text="{Binding Path=Navn}" FontWeight="Bold"></TextBlock>
         </HierarchicalDataTemplate>
+
+        <DataTemplate DataType="{x:Type local:Person}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="2"  Text="{Binding Path=Navn}"></TextBlock>
+                <StackPanel Orientation="Vertical" Margin="10 10">
+                    <Button Content="PLUS"/>
+                    <TextBlock Text="Test"/>
+                    <Button Content="MINUS"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        
+        
+        
+        
     </UserControl.Resources>
 
-    <TreeView ItemsSource = "{Binding Familier}" ItemTemplate = "{StaticResource familieTemplate}"/>
+
+    <TreeView ItemsSource="{Binding Familier}">
+    </TreeView>
 </UserControl>

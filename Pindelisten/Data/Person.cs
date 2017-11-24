@@ -24,8 +24,9 @@ namespace Pindelisten
         /// Liste af forbrug for personen
         /// </summary>
         public ObservableCollection<Forbrug> Forbrug { get; set; }
-
+      
         #endregion
+
 
         #region Constructor
 
@@ -36,6 +37,13 @@ namespace Pindelisten
         }
 
         #endregion
+
+        #region Metoder
+
+
+
+        #endregion
+
 
     }
 }

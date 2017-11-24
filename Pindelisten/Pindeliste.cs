@@ -33,8 +33,8 @@ namespace Pindelisten
         /// Filstier
         /// </summary>
 
-        String familierFil = @"C:\Users\mmt\Source\Repos\Pindelisten\Pindelisten\Data\Filer\Familier.dat";
-        String pindelistevarerFil = @"C:\Users\mmt\Source\Repos\Pindelisten\Pindelisten\Data\Filer\Pindelistevarer.dat";
+        String familierFil = @"C:\Users\midtg\Source\Repos\Pindelisten\Pindelisten\Data\Filer\Familier.dat";
+        String pindelistevarerFil = @"C:\Users\midtg\Source\Repos\Pindelisten\Pindelisten\Data\Filer\Pindelistevarer.dat";
 
         #endregion
 

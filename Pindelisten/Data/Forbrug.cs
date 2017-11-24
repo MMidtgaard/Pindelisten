@@ -10,7 +10,7 @@ namespace Pindelisten
     /// Et forbrug af en vare
     /// </summary>
     [Serializable]
-    public class Forbrug
+    public class Forbrug// : IEquatable<Forbrug>
     {
         #region Properties og attributter
 
@@ -34,6 +34,25 @@ namespace Pindelisten
             Tidspunkt = DateTime.Now;
         }
 
+        #endregion
+
+        #region Metoder
+
+        /// <summary>
+        /// Sammenligner et givent objekt 
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        /*public bool Equals(Forbrug other)
+        {
+            if (other == null)
+                return false;
+
+            if (this.Varetype == other.Varetype)
+                return true;
+            else
+                return false;
+        }*/
         #endregion
     }
 }

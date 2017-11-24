@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:Pindelisten"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <StackPanel>
-        <local:PindelisteView x:Name="PindelisteViewControl" Loaded="PindelisteViewControl_Loaded"/>
-    </StackPanel>
+    <Border Margin="10">
+        <StackPanel>
+            <TextBlock Grid.Column="0" Text="Pindelisten" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold"/>
+            
+            <local:PindelisteView />
+        </StackPanel>
+    </Border>
 </Window>

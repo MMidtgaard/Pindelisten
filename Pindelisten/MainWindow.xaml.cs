@@ -25,13 +25,5 @@ namespace Pindelisten
         {
             InitializeComponent();
         }
-
-        private void PindelisteViewControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            PindelisteViewModel pindelisteViewModelObject = new PindelisteViewModel();
-            pindelisteViewModelObject.HentLister();
-            PindelisteViewControl.DataContext = pindelisteViewModelObject;
-        }
     }
 }

@@ -35,8 +35,16 @@ namespace Pindelisten
         {
             ObservableCollection<Familie> Familier = new ObservableCollection<Familie>();
             ObservableCollection<Pindelistevare> Pindelistevarer = new ObservableCollection<Pindelistevare>();
+            HentLister();
         }
 
+        #endregion
+
+        #region Metoder
+
+        /// <summary>
+        /// Metode der opretter en ny pindeliste og henter listerne til viewet
+        /// </summary>
         public void HentLister()
         {
             Pindeliste pindeliste = new Pindeliste();

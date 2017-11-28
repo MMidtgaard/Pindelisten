@@ -33,8 +33,8 @@ namespace Pindelisten
         /// Filstier
         /// </summary>
 
-        String familierFil = @"C:\Users\midtg\Source\Repos\Pindelisten\Pindelisten\Data\Filer\Familier.dat";
-        String pindelistevarerFil = @"C:\Users\midtg\Source\Repos\Pindelisten\Pindelisten\Data\Filer\Pindelistevarer.dat";
+        String familierFil = Environment.CurrentDirectory + "\\Data\\Familier.dat";
+        String pindelistevarerFil = Environment.CurrentDirectory + "\\Data\\Pindelistevarer.dat";
 
         #endregion
 
@@ -74,11 +74,11 @@ namespace Pindelisten
 
             HentListerFraFil();
         }
-
+        
         #endregion
 
         #region Metoder
-        
+
         /// <summary>
         /// Metode der skriver listerne til fil
         /// </summary>

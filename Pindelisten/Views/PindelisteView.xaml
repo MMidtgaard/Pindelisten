@@ -18,17 +18,16 @@
         <DataTemplate DataType="{x:Type local:Person}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="2"  Text="{Binding Path=Navn}"></TextBlock>
-                <StackPanel Orientation="Vertical" Margin="10 10">
-                    <Button Content="PLUS"/>
-                    <TextBlock Text="Test"/>
-                    <Button Content="MINUS"/>
-                </StackPanel>
+                <ListView>
+                    <StackPanel Orientation="Vertical" Margin="10 10">
+                        <Button Content="PLUS"/>
+                        <TextBlock Text="Test"/>
+                        <Button Content="MINUS"/>
+                    </StackPanel>
+                </ListView>
             </StackPanel>
         </DataTemplate>
-        
-        
-        
-        
+
     </UserControl.Resources>
 
 

@@ -27,7 +27,6 @@ namespace Pindelisten
       
         #endregion
 
-
         #region Constructor
 
         public Person(string navn)
@@ -43,7 +42,6 @@ namespace Pindelisten
 
 
         #endregion
-
 
     }
 }

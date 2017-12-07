@@ -11,26 +11,57 @@
     <UserControl.Resources>
 
 
-        <HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">
+        <!--<HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">
             <TextBlock  Text="{Binding Path=Navn}" FontWeight="Bold"></TextBlock>
         </HierarchicalDataTemplate>
 
         <DataTemplate DataType="{x:Type local:Person}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="2"  Text="{Binding Path=Navn}"></TextBlock>
-                <ListView>
-                    <StackPanel Orientation="Vertical" Margin="10 10">
-                        <Button Content="PLUS"/>
-                        <TextBlock Text="Test"/>
-                        <Button Content="MINUS"/>
-                    </StackPanel>
+                <ListView ItemsSource="{Binding Path=BeregnetForbrug}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Label>Name</Label>
+                                <TextBlock Text="{Binding Path=Antal}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
         </DataTemplate>
-
+        -->
     </UserControl.Resources>
 
-
-    <TreeView ItemsSource="{Binding Familier}">
-    </TreeView>
+    <StackPanel>
+        <Button Content="familieTest" Click="Button_Click"></Button>
+        <TreeView ItemsSource="{Binding Path=Familier}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">
+                    <TextBlock Text="{Binding Path=Navn}" FontWeight="Bold"/>
+                </HierarchicalDataTemplate>
+                <DataTemplate DataType="{x:Type local:Person}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Navn}" />
+                        <ListView ItemsSource="{Binding Path=BeregnetForbrug}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"></StackPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Content="+"></Button>
+                                        <TextBlock Text="{Binding Path=Antal}"/>
+                                        <Button Content="-"></Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </DataTemplate>
+            </TreeView.Resources>
+        </TreeView>
+    </StackPanel>
 </UserControl>

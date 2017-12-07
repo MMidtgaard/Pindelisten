@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\BeregnetForbrug.cs" />
     <Compile Include="ViewModels\PindelisteViewModel.cs" />
     <Compile Include="Views\PindelisteView.xaml.cs">
       <DependentUpon>PindelisteView.xaml</DependentUpon>

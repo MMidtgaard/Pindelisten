@@ -24,6 +24,11 @@ namespace Pindelisten
         /// Liste af forbrug for personen
         /// </summary>
         public ObservableCollection<Forbrug> Forbrug { get; set; }
+
+        /// <summary>
+        /// Personens forbrug beregnet og fordelt på varetyper. Indeholder også en 0-angivelse af varetyper der ikke er købt.
+        /// </summary>
+        public ObservableCollection<BeregnetForbrug> BeregnetForbrug { get; }
       
         #endregion
 
@@ -33,13 +38,25 @@ namespace Pindelisten
         {
             Navn = navn;
             Forbrug = new ObservableCollection<Forbrug>();
+            BeregnetForbrug = new ObservableCollection<BeregnetForbrug>();
         }
 
         #endregion
 
         #region Metoder
+        /// <summary>
+        /// Modtager en liste af pindelistevaretyper, tæller hvor mange af hver varetype personen har og opdaterer Beregnet forbrug for personen.
+        /// </summary>
+        /// <param name="varetyper"></param>
+        public void BeregnForbrug(ObservableCollection<Pindelistevare> varetyper)
+        {
+            foreach(Pindelistevare varetype in varetyper)
+            {
+                int antal = Forbrug.Count(p => p.Varetype.Equals(varetype));
 
-
+                BeregnetForbrug.Add(new BeregnetForbrug(varetype, antal));
+            }
+        }
 
         #endregion
 

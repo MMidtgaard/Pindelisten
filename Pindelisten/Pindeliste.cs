@@ -66,13 +66,28 @@ namespace Pindelisten
             Familier.ElementAt(2).Medlemmer.Add(new Person("Sophie"));
 
             Familier.ElementAt(0).Medlemmer.ElementAt(0).Forbrug.Add(new Forbrug(Pindelistevarer.ElementAt(0)));
-
+            
             
             SkrivListerTilFil();
             */
             #endregion
 
             HentListerFraFil();
+
+            Familier.ElementAt(0).Medlemmer.ElementAt(0).Forbrug.Add(new Forbrug(Pindelistevarer.ElementAt(0)));
+
+            foreach (Familie familie in Familier)
+            {
+                foreach (Person person in familie.Medlemmer)
+                {
+                    person.BeregnForbrug(Pindelistevarer);
+                    foreach (BeregnetForbrug forbrug in person.BeregnetForbrug)
+                    {
+                        Trace.WriteLine(forbrug.Antal.ToString());
+                    }
+                }
+            }
+
         }
         
         #endregion

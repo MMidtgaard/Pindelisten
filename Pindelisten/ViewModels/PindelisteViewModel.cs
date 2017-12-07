@@ -35,7 +35,7 @@ namespace Pindelisten
         {
             ObservableCollection<Familie> Familier = new ObservableCollection<Familie>();
             ObservableCollection<Pindelistevare> Pindelistevarer = new ObservableCollection<Pindelistevare>();
-            HentLister();      
+            HentLister();
         }
 
         #endregion
@@ -51,25 +51,12 @@ namespace Pindelisten
             Familier = pindeliste.Familier;
             Pindelistevarer = pindeliste.Pindelistevarer;
 
-            Familier.ElementAt(0).Medlemmer.ElementAt(0).Forbrug.Add(new Forbrug(Pindelistevarer.ElementAt(0)));
-
-            BeregnForbrug(Familier.ElementAt(0).Medlemmer.ElementAt(0));
-
+            
         }
 
-        public List<int> BeregnForbrug(Person person)
+        public void OpretFamilie(String navn)
         {
-            List<int> beregnetForbrug = new List<int>();
-
-            foreach (Pindelistevare vare in Pindelistevarer)
-            {
-
-                int antal = person.Forbrug.Count(p => p.Varetype.Equals(vare));
-
-                beregnetForbrug.Add(antal);
-            }
-
-            return beregnetForbrug;
+            Familier.Add(new Familie(navn));
         }
         #endregion
     }

@@ -34,7 +34,7 @@
     </UserControl.Resources>
 
     <StackPanel>
-        <Button Content="familieTest" Click="Button_Click"></Button>
+        <Button Content="familieTest" Click="Button_Click" Command = "{Binding NyFamilieCommand}"/>
         <TreeView ItemsSource="{Binding Path=Familier}">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">

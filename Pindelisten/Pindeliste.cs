@@ -68,8 +68,8 @@ namespace Pindelisten
             Familier.ElementAt(0).Medlemmer.ElementAt(0).Forbrug.Add(new Forbrug(Pindelistevarer.ElementAt(0)));
             
             
-            SkrivListerTilFil();
-            */
+            SkrivListerTilFil();*/
+            
             #endregion
 
             HentListerFraFil();

@@ -24,6 +24,8 @@ namespace Pindelisten
         /// </summary>
         public ObservableCollection<Pindelistevare> Pindelistevarer { get; set; }
 
+        public PLICommand NyFamilieCommand { get; set; }
+
         #endregion
 
         #region Constructor
@@ -36,6 +38,10 @@ namespace Pindelisten
             ObservableCollection<Familie> Familier = new ObservableCollection<Familie>();
             ObservableCollection<Pindelistevare> Pindelistevarer = new ObservableCollection<Pindelistevare>();
             HentLister();
+
+            NyFamilieCommand = new PLICommand(NyFamilie);
+
+            
         }
 
         #endregion
@@ -58,6 +64,12 @@ namespace Pindelisten
         {
             Familier.Add(new Familie(navn));
         }
+
+        private void NyFamilie()
+        {
+            Familier.Add(new Familie("Petersen"));
+        }
+
         #endregion
     }
 }

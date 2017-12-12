@@ -52,9 +52,9 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button Content="+"></Button>
+                                        <Button Content="+" Click="Button_Click" Command = "{Binding Path =}"/>
                                         <TextBlock Text="{Binding Path=Antal}"/>
-                                        <Button Content="-"></Button>
+                                        <Button Content="-"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

@@ -24,7 +24,25 @@ namespace Pindelisten
         /// </summary>
         public ObservableCollection<Pindelistevare> Pindelistevarer { get; set; }
 
+        /// <summary>
+        /// Command til at oprette ny familie
+        /// </summary>
         public PLICommand NyFamilieCommand { get; set; }
+
+        /// <summary>
+        /// Command til at købe en pindelistevare
+        /// </summary>
+        public PLICommand KøbPindelistevareCommand { get; set; }
+
+        /// <summary>
+        /// Property til at holde en person der skal købe eller sælge en pindelistevare
+        /// </summary>
+        public Person ValgtePerson { get; set; }
+
+        /// <summary>
+        /// Property til at holde en pindelistevare der skal købe eller sælge en pindelistevare
+        /// </summary>
+        public Pindelistevare ValgtePindelistevare { get; set; }
 
         #endregion
 
@@ -40,8 +58,8 @@ namespace Pindelisten
             HentLister();
 
             NyFamilieCommand = new PLICommand(NyFamilie);
+            KøbPindelistevareCommand = new PLICommand(KøbPindelistevare);
 
-            
         }
 
         #endregion
@@ -68,6 +86,14 @@ namespace Pindelisten
         private void NyFamilie()
         {
             Familier.Add(new Familie("Petersen"));
+        }
+
+        private void KøbPindelistevare()
+        {
+            ValgtePerson = Familier.ElementAt(0).Medlemmer.ElementAt(0);
+            ValgtePindelistevare = Pindelistevarer.ElementAt(0);
+
+            ValgtePerson.OpretForbrug(ValgtePindelistevare);
         }
 
         #endregion

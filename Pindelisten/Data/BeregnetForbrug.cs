@@ -10,7 +10,7 @@ namespace Pindelisten
     /// Klasse der holder et beregnet antal af en specifik pindelistevare
     /// </summary>
     [Serializable]
-    public class BeregnetForbrug
+    public class BeregnetForbrug : IEquatable<Pindelistevare>
     {
         #region properties
         /// <summary>
@@ -33,5 +33,15 @@ namespace Pindelisten
         }
 
         #endregion
+
+        #region Metoder
+
+        public bool Equals(Pindelistevare other)
+        {
+            if (other == null) return false;
+            return (this.Varetype.Equals(other));
+        }
+
+        #endregion 
     }
 }

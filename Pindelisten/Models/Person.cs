@@ -34,11 +34,27 @@ namespace Pindelisten
 
         #region Constructor
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="navn"></param>
         public Person(string navn)
         {
             Navn = navn;
             Forbrug = new ObservableCollection<Forbrug>();
             BeregnetForbrug = new ObservableCollection<BeregnetForbrug>();
+        }
+
+        /// <summary>
+        /// Constructor der samtidig med oprettelsen beregner forbrug baseret på en liste af varer
+        /// </summary>
+        /// <param name="navn"></param>
+        public Person(string navn, ObservableCollection<Pindelistevare> varetyper)
+        {
+            Navn = navn;
+            Forbrug = new ObservableCollection<Forbrug>();
+            BeregnetForbrug = new ObservableCollection<BeregnetForbrug>();
+            BeregnForbrug(varetyper);
         }
 
         #endregion
@@ -54,7 +70,7 @@ namespace Pindelisten
             {
                 int antal = Forbrug.Count(p => p.Varetype.Equals(varetype));
 
-                BeregnetForbrug.Add(new BeregnetForbrug(varetype, antal));
+                BeregnetForbrug.Add(new BeregnetForbrug(varetype, antal, this));
             }
         }
 
@@ -66,7 +82,7 @@ namespace Pindelisten
         {
             int antal = Forbrug.Count(p => p.Varetype.Equals(vareType));
             int beregnetForbrugItem = 0;
-
+            
             bool fundet = false;
             while (fundet == false)
             {
@@ -89,13 +105,20 @@ namespace Pindelisten
         /// <summary>
         /// Opretter et nyt forbrug for personen
         /// </summary>
-        /// <param name="vareType"></param>
-        public void OpretForbrug(Pindelistevare vareType)
+        /// <param name="varetype"></param>
+        public void OpretForbrug(Pindelistevare varetype)
         {
-            Forbrug forbrug = new Forbrug(vareType);
+            Forbrug forbrug = new Forbrug(varetype);
             Forbrug.Insert(0, forbrug);
 
-            OpdaterBeregnetForbrug(vareType);
+            OpdaterBeregnetForbrug(varetype);
+        }
+
+        public void SletForbrug(Pindelistevare varetype)
+        {
+            Forbrug.Remove(new Forbrug(varetype));
+
+            OpdaterBeregnetForbrug(varetype);
         }
 
         #endregion

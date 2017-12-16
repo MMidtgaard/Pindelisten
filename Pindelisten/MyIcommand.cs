@@ -4,17 +4,18 @@ using System.Windows.Input;
 namespace Pindelisten
 {
 
-    public class PLICommand : ICommand
+    public class MyICommand<T> : ICommand
     {
-        Action _TargetExecuteMethod;
-        Func<bool> _TargetCanExecuteMethod;
 
-        public PLICommand(Action executeMethod)
+        Action<T> _TargetExecuteMethod;
+        Func<T, bool> _TargetCanExecuteMethod;
+
+        public MyICommand(Action<T> executeMethod)
         {
             _TargetExecuteMethod = executeMethod;
         }
 
-        public PLICommand(Action executeMethod, Func<bool> canExecuteMethod)
+        public MyICommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
         {
             _TargetExecuteMethod = executeMethod;
             _TargetCanExecuteMethod = canExecuteMethod;
@@ -25,12 +26,15 @@ namespace Pindelisten
             CanExecuteChanged(this, EventArgs.Empty);
         }
 
+        #region ICommand Members
+
         bool ICommand.CanExecute(object parameter)
         {
 
             if (_TargetCanExecuteMethod != null)
             {
-                return _TargetCanExecuteMethod();
+                T tparm = (T)parameter;
+                return _TargetCanExecuteMethod(tparm);
             }
 
             if (_TargetExecuteMethod != null)
@@ -40,18 +44,21 @@ namespace Pindelisten
 
             return false;
         }
-		
-      // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects that get hooked up to command
+
+        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects that get hooked up to command
  
       // Prism commands solve this in their implementation 
+
         public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {
             if (_TargetExecuteMethod != null)
             {
-                _TargetExecuteMethod();
+                _TargetExecuteMethod((T)parameter);
             }
         }
+
+        #endregion
     }
 }

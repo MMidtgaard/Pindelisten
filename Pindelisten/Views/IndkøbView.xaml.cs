@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Pindelisten
 {
     /// <summary>
-    /// Interaction logic for PindelisteView.xaml
+    /// Interaction logic for IndkøbView.xaml
     /// </summary>
-    public partial class PindelisteView
+    public partial class IndkøbView
     {
-        public PindelisteView()
+        public IndkøbView()
         {
             InitializeComponent();
         }

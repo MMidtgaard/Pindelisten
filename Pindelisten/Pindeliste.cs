@@ -29,10 +29,10 @@ namespace Pindelisten
         #endregion
 
         #region Attributter
+        
         /// <summary>
         /// Filstier
         /// </summary>
-
         String familierFil = Environment.CurrentDirectory + "\\Data\\Familier.dat";
         String pindelistevarerFil = Environment.CurrentDirectory + "\\Data\\Pindelistevarer.dat";
 
@@ -81,10 +81,6 @@ namespace Pindelisten
                 foreach (Person person in familie.Medlemmer)
                 {
                     person.BeregnForbrug(Pindelistevarer);
-                    foreach (BeregnetForbrug forbrug in person.BeregnetForbrug)
-                    {
-                        Trace.WriteLine(forbrug.Antal.ToString());
-                    }
                 }
             }
 

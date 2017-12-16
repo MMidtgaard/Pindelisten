@@ -5,14 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.ComponentModel;
+using System.Windows;
 
 namespace Pindelisten
 {
     /// <summary>
     /// ViewModel for min pindeliste
     /// </summary>
-    public class PindelisteViewModel
+    public class PindelisteViewModel : BindableBase
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #region Properties
         /// <summary>
         /// Liste af familier
@@ -25,24 +29,33 @@ namespace Pindelisten
         public ObservableCollection<Pindelistevare> Pindelistevarer { get; set; }
 
         /// <summary>
+        /// Navnet på en ny familie
+        /// </summary>
+        public String NyFamilieNavn { get; set; }
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
         /// Command til at oprette ny familie
         /// </summary>
-        public PLICommand NyFamilieCommand { get; set; }
+        public OpretFamilieCommand OpretFamilieCommand { get; set; }
 
         /// <summary>
-        /// Command til at købe en pindelistevare
+        /// Command til at oprette nyt familiemedlem
         /// </summary>
-        public PLICommand KøbPindelistevareCommand { get; set; }
+        public OpretFamiliemedlemCommand OpretFamiliemedlemCommand { get; set; }
 
         /// <summary>
-        /// Property til at holde en person der skal købe eller sælge en pindelistevare
+        /// Command til at oprette et forbrug
         /// </summary>
-        public Person ValgtePerson { get; set; }
+        public OpretForbrugCommand OpretForbrugCommand { get; set; }
 
         /// <summary>
-        /// Property til at holde en pindelistevare der skal købe eller sælge en pindelistevare
+        /// Command til at slette et forbrug
         /// </summary>
-        public Pindelistevare ValgtePindelistevare { get; set; }
+        public SletForbrugCommand SletForbrugCommand { get; set; }
 
         #endregion
 
@@ -53,12 +66,19 @@ namespace Pindelisten
         /// </summary>
         public PindelisteViewModel()
         {
-            ObservableCollection<Familie> Familier = new ObservableCollection<Familie>();
-            ObservableCollection<Pindelistevare> Pindelistevarer = new ObservableCollection<Pindelistevare>();
-            HentLister();
 
-            NyFamilieCommand = new PLICommand(NyFamilie);
-            KøbPindelistevareCommand = new PLICommand(KøbPindelistevare);
+            //Familier = new ObservableCollection<Familie>();
+            Familier = DataProvider.Familier;
+
+            //Pindelistevarer = new ObservableCollection<Pindelistevare>();
+            Pindelistevarer = DataProvider.Pindelistevarer;
+
+            //HentLister();
+
+            OpretFamilieCommand = new OpretFamilieCommand(this);
+            OpretFamiliemedlemCommand = new OpretFamiliemedlemCommand(this);
+            OpretForbrugCommand = new OpretForbrugCommand(this);
+            SletForbrugCommand = new SletForbrugCommand(this);
 
         }
 
@@ -74,26 +94,60 @@ namespace Pindelisten
             Pindeliste pindeliste = new Pindeliste();
             Familier = pindeliste.Familier;
             Pindelistevarer = pindeliste.Pindelistevarer;
+            Pindelistevarer.ElementAt(0).Lager = 10;
+        }
 
-            
+        public void SætData()
+        {
+            Familier = DataProvider.Familier;
+            Pindelistevarer = DataProvider.Pindelistevarer;
         }
 
         public void OpretFamilie(String navn)
         {
-            Familier.Add(new Familie(navn));
+            bool eksisterer = false;
+            if (Familier != null)
+            { 
+                foreach (Familie familie in Familier)
+                {
+                    if (familie.Navn == navn)
+                        eksisterer = true;
+                }
+            }
+            if (eksisterer == false)
+            {
+                Familier.Add(new Familie(navn));
+                NyFamilieNavn = "";
+            }
+            else
+                MessageBox.Show("Der findes allerede en familie med det navn!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void NyFamilie()
+        public void OpretForbrug(Person person, Pindelistevare pindelistevare)
         {
-            Familier.Add(new Familie("Petersen"));
+            Trace.WriteLine(person.Navn);
+
+            if (pindelistevare.Lager==0)
+                MessageBox.Show("Der er ikke flere tilbage af varen!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            else
+            {
+                person.OpretForbrug(pindelistevare);
+                pindelistevare.SælgEn();
+            }
         }
 
-        private void KøbPindelistevare()
+        public void OpretFamiliemedlem(Familie familie)
         {
-            ValgtePerson = Familier.ElementAt(0).Medlemmer.ElementAt(0);
-            ValgtePindelistevare = Pindelistevarer.ElementAt(0);
+            bool eksisterer = familie.OpretFamiliemedlem(Pindelistevarer);
+            if (eksisterer == true)
+                MessageBox.Show("Der findes allerede et familiemedlem med det navn!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
-            ValgtePerson.OpretForbrug(ValgtePindelistevare);
+        public void SletForbrug(Person person, Pindelistevare pindelistevare)
+        {
+            person.SletForbrug(pindelistevare);
+            pindelistevare.FortrydSalg();
         }
 
         #endregion

@@ -4,46 +4,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pindelisten"
-             local:ViewModelLocator.AutoHookedUpViewModel = "True" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
+        <local:PindelisteViewModel x:Key="PVM"/>
+
+        <Style TargetType="{x:Type ListViewItem}">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PlusMinusKnap" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Overlay">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Overlay" Property="Opacity" Value="0.5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
 
-        <!--<HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">
-            <TextBlock  Text="{Binding Path=Navn}" FontWeight="Bold"></TextBlock>
-        </HierarchicalDataTemplate>
-
-        <DataTemplate DataType="{x:Type local:Person}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="2"  Text="{Binding Path=Navn}"></TextBlock>
-                <ListView ItemsSource="{Binding Path=BeregnetForbrug}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <Label>Name</Label>
-                                <TextBlock Text="{Binding Path=Antal}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackPanel>
-        </DataTemplate>
-        -->
     </UserControl.Resources>
 
-    <StackPanel>
-        <Button Content="familieTest" Click="Button_Click" Command = "{Binding NyFamilieCommand}"/>
-        <TreeView ItemsSource="{Binding Path=Familier}">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type local:Familie}" ItemsSource="{Binding Path=Medlemmer}">
-                    <TextBlock Text="{Binding Path=Navn}" FontWeight="Bold"/>
-                </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type local:Person}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=Navn}" />
-                        <ListView ItemsSource="{Binding Path=BeregnetForbrug}">
+    <StackPanel DataContext="{Binding Source={StaticResource PVM}}">
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Text="Opret ny familie:" />
+                <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <TextBlock Text="Navn:"/>
+                    <TextBox Name="OpretFamilieNavn" Margin="5 0" Text="{Binding NyFamilieNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                </StackPanel>
+                <Button Content="Opret Familie" Command="{Binding OpretFamilieCommand}" CommandParameter="{Binding NyFamilieNavn}" Width="80" HorizontalAlignment="Left" Background="White" BorderBrush="Black" OpacityMask="Black"/>
+            </StackPanel>
+        </StackPanel>
+        <ListView ItemsSource="{Binding Familier}" BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0 10">
+                        <TextBlock Text="{Binding Navn}" FontSize="16" FontWeight="Bold"/>
+                        <ListView Margin="100 0 0 0" ItemsSource="{Binding Pindelistevarer, Source={StaticResource PVM}}">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal"></StackPanel>
@@ -52,16 +67,57 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>
-                                        <Button Content="+" Click="Button_Click" Command = "{Binding Path =}"/>
-                                        <TextBlock Text="{Binding Path=Antal}"/>
-                                        <Button Content="-"/>
+                                        <TextBlock Width="35" Text="{Binding Navn}" HorizontalAlignment="Center" TextAlignment="Center" Margin="5 0"/>
+                                        <TextBlock Width="35" Text="{Binding Pris, StringFormat= ' {0},-'}" HorizontalAlignment="Center" TextAlignment="Center" Margin="5 0"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <StackPanel>
+                            <ListView ItemsSource="{Binding Medlemmer}" BorderThickness="0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Navn}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100" Padding="20 0 0 0"/>
+                                            <ListView ItemsSource="{Binding BeregnetForbrug}" BorderThickness="0">
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal"></StackPanel>
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel>
+                                                            <Button Style="{StaticResource PlusMinusKnap}" Background="Transparent" BorderThickness="0" Command="{Binding OpretForbrugCommand, Source={StaticResource PVM}}" CommandParameter="{Binding Mode=OneWay}">
+
+                                                                <StackPanel>
+                                                                    <Image Source="/Billeder/plusS.png" Stretch="Uniform" Width="35" Height="35"></Image>
+                                                                </StackPanel>
+                                                            </Button>
+                                                            <TextBlock Margin="19 10" Text="{Binding Antal}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            <Button Style="{StaticResource PlusMinusKnap}" Background="Transparent" BorderThickness="0" Command="{Binding SletForbrugCommand, Source={StaticResource PVM}}" CommandParameter="{Binding Mode=OneWay}">
+                                                                <StackPanel>
+                                                                    <Image Source="/Billeder/minusS.png" Width="35" Height="35" Stretch="Uniform"></Image>
+                                                                </StackPanel>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <TextBlock Text="Nyt Familiemedlem:"/>
+                        <StackPanel Orientation="Horizontal" Margin="0 5">
+                            <TextBlock Text="Navn:"/>
+                            <TextBox Margin="5 0 0 0" Width=" 100" Text="{Binding NytFamilieMedlemNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <Button Content="Opret" Width="60" HorizontalAlignment="Left" Background="White" Command="{Binding OpretFamiliemedlemCommand, Source={StaticResource PVM}}" CommandParameter="{Binding Mode=OneWay}"/>
                     </StackPanel>
                 </DataTemplate>
-            </TreeView.Resources>
-        </TreeView>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </UserControl>

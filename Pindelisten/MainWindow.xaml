@@ -5,12 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pindelisten"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Pindelisten"
+        Width="Auto" Height="Auto" SizeToContent="WidthAndHeight">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType = "{x:Type local:PindelisteViewModel}">
+            <local:PindelisteView/>
+        </DataTemplate>
+
+        <DataTemplate DataType = "{x:Type local:IndkøbViewModel}">
+            <local:IndkøbView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Border Margin="10">
         <StackPanel>
-            <TextBlock Grid.Column="0" Text="Pindelisten" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold"/>
-            
-            <local:PindelisteView />
+            <TextBlock Grid.Column="0" Text="Pindelisten" FontFamily="Century Gothic" FontSize="24" FontWeight="Bold"/>
+            <Button Content="Hent data"></Button>
+            <Grid Margin="0 30 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height = "Auto" />
+                    <RowDefinition Height = "*" />
+                </Grid.RowDefinitions>
+
+                <Grid x:Name = "NavBar">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width = "*" />
+                        <ColumnDefinition Width = "*" />
+                        <ColumnDefinition Width = "*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content = "Pindeliste" 
+            Command = "{Binding NavCommand}"
+            CommandParameter = "Pindeliste" 
+            Grid.Column = "0" />
+
+                    <Button Content = "Indkøb" 
+            Command = "{Binding NavCommand}" 
+            CommandParameter = "Indkøb" 
+            Grid.Column = "2" />
+                </Grid>
+
+                <Grid x:Name = "MainContent" Grid.Row = "1">
+                    <ContentControl Content = "{Binding CurrentViewModel}" />
+                </Grid>
+
+            </Grid>
+
         </StackPanel>
     </Border>
 </Window>

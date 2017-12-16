@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace Pindelisten
     /// En vare som kan købes på pindelisten.
     /// </summary>
     [Serializable]
-    public class Pindelistevare
+    public class Pindelistevare : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #region Properties
         
         /// <summary>

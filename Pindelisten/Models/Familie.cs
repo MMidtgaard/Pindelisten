@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 namespace Pindelisten
 {
     [Serializable]
-    public class Familie
+    public class Familie : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #region Properties
 
         /// <summary>
@@ -32,6 +35,11 @@ namespace Pindelisten
         /// </summary>
         public ObservableCollection<Pindelisteindkøb> Pindelisteindkøb { get; set; }
 
+        /// <summary>
+        /// Holder midlertidigt navn på nyt familiemedlem
+        /// </summary>
+        public String NytFamilieMedlemNavn { get; set; }
+
         #endregion
 
         #region Constructor
@@ -44,6 +52,29 @@ namespace Pindelisten
             Pindelisteindkøb = new ObservableCollection<Pindelisteindkøb>();
         }
 
+        #endregion
+
+        #region Metoder
+
+        /// <summary>
+        /// Metode til at oprette nyt familiemedlem
+        /// </summary>
+        public bool OpretFamiliemedlem(ObservableCollection<Pindelistevare> varetyper)
+        {
+            bool eksisterer = false;
+            foreach (Person person in Medlemmer)
+            {
+                if (person.Navn == NytFamilieMedlemNavn)
+                    eksisterer = true;
+            }
+            if (eksisterer == false)
+            {
+                Medlemmer.Add(new Person(NytFamilieMedlemNavn, varetyper));
+                NytFamilieMedlemNavn = null;
+            }
+
+            return eksisterer;
+        }
         #endregion
     }
 }

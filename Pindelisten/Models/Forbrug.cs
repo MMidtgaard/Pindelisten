@@ -10,7 +10,7 @@ namespace Pindelisten
     /// Et forbrug af en vare
     /// </summary>
     [Serializable]
-    public class Forbrug// : IEquatable<Forbrug>
+    public class Forbrug : IEquatable<Forbrug>
     {
         #region Properties og attributter
 
@@ -43,7 +43,7 @@ namespace Pindelisten
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        /*public bool Equals(Forbrug other)
+        public bool Equals(Forbrug other)
         {
             if (other == null)
                 return false;
@@ -52,7 +52,7 @@ namespace Pindelisten
                 return true;
             else
                 return false;
-        }*/
+        }
         #endregion
     }
 }

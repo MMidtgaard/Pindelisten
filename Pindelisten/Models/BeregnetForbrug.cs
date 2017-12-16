@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +12,10 @@ namespace Pindelisten
     /// Klasse der holder et beregnet antal af en specifik pindelistevare
     /// </summary>
     [Serializable]
-    public class BeregnetForbrug : IEquatable<Pindelistevare>
+    public class BeregnetForbrug : IEquatable<Pindelistevare>, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         #region properties
         /// <summary>
         /// Varen der er beregnet
@@ -23,13 +27,19 @@ namespace Pindelisten
         /// </summary>
         public int Antal { get; set; }
 
+        /// <summary>
+        /// Personen det beregnede forbrug tilhører
+        /// </summary>
+        public Person Person { get; set; }
+
         #endregion
 
         #region constructor
-        public BeregnetForbrug(Pindelistevare varetype, int antal)
+        public BeregnetForbrug(Pindelistevare varetype, int antal, Person person)
         {
             Varetype = varetype;
             Antal = antal;
+            Person = person;
         }
 
         #endregion

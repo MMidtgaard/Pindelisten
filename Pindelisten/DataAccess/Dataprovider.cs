@@ -23,15 +23,18 @@ namespace Pindelisten
         /// </summary>
         public static ObservableCollection<Familie> Familier = new ObservableCollection<Familie>();
 
+        private string familierFil = Environment.CurrentDirectory + "\\Data\\Familier.dat";
+        private string pindelistevarerFil = Environment.CurrentDirectory + "\\Data\\Pindelistevarer.dat";
+
         #endregion
+
+        public DataProvider()
+        {
+
+        }
 
         public void HentFraFil()
         {
-            Familier.Add(new Familie("Midtgaard"));
-            /*
-            String familierFil = Environment.CurrentDirectory + "\\Data\\Familier.dat";
-            String pindelistevarerFil = Environment.CurrentDirectory + "\\Data\\Pindelistevarer.dat";
-
             BinaryFormatter bf = new BinaryFormatter();
 
             Stream læsP = File.OpenRead(pindelistevarerFil);
@@ -45,13 +48,21 @@ namespace Pindelisten
             //Caster data fra filerne til listerne
             Familier = (ObservableCollection<Familie>)familieFraFil;
             Pindelistevarer = (ObservableCollection<Pindelistevare>)vareFraFil;
-            */
         }
 
         public void GemPåFil()
         {
-            String familierFil = Environment.CurrentDirectory + "\\Data\\Familier.dat";
-            String pindelistevarerFil = Environment.CurrentDirectory + "\\Data\\Pindelistevarer.dat";
+            BinaryFormatter bf = new BinaryFormatter();
+
+            Stream skrivP = File.OpenWrite(pindelistevarerFil);
+            bf.Serialize(skrivP, Pindelistevarer);
+
+            skrivP.Close();
+
+            Stream skrivF = File.OpenWrite(familierFil);
+            bf.Serialize(skrivF, Familier);
+
+            skrivF.Close();
         }
 
         

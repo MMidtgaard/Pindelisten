@@ -28,15 +28,16 @@ namespace Pindelisten
 
         #region Constructor
 
-        public Pindelisteindkøb(String navn, Pindelistevare varetype, int Antal) : base(navn)
+        public Pindelisteindkøb(string navn, decimal pris, Pindelistevare varetype, int antal) : base(navn, pris)
         {
-            Navn = navn;
+            Varetype = varetype;
+            Antal = antal;
         }
 
-        public Pindelisteindkøb(String navn, String beskrivelse, Pindelistevare varetype, int Antal) : base(navn, beskrivelse)
+        public Pindelisteindkøb(string navn, string beskrivelse, decimal pris, Pindelistevare varetype, int antal) : base(navn, beskrivelse, pris)
         {
-            Navn = navn;
-            Beskrivelse = beskrivelse;
+            Varetype = varetype;
+            Antal = antal;
         }
         #endregion
     }

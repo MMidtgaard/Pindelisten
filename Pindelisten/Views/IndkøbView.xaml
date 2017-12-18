@@ -4,23 +4,113 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pindelisten"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             Width="350">
 
     <UserControl.Resources>
         <local:IndkøbViewModel x:Key="IVM"/>
     </UserControl.Resources>
-
-    <StackPanel>
-        <ListView ItemsSource="{Binding Familier}" BorderThickness="0">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="0 10">
-                        <TextBlock Text="{Binding Navn}" FontSize="16" FontWeight="Bold"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
     
+    <Grid DataContext="{Binding Source={StaticResource IVM}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Top" Grid.Row="0">
+            <TextBlock Text="Familie" FontSize="12" FontWeight="Bold"/>
+            <ListBox x:Name="listBox" ItemsSource="{Binding Familier}" SelectedItem = "{Binding ValgteFamilie}" BorderBrush="DarkGray" BorderThickness="1" VerticalAlignment="Top">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Navn}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="Gray" BorderThickness="0 0 1 0">
+                <StackPanel Grid.Column="0" Grid.Row="0" Height="280" VerticalAlignment="Top">
+                    <TextBlock Text="Indkøb" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <ListView Margin="5" ItemsSource="{Binding ValgteFamilie.Indkøb}" SelectedItem = "{Binding ValgteIndkøb}" BorderThickness="0" Name="Indkøb" Width="160" Height="250">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin=" 0 5 0 0">
+                                    <TextBlock Text="{Binding Navn}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Pris, StringFormat= 'Pris: {0},-'}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <TextBlock HorizontalAlignment="Center" Text="Pindelisteindkøb" FontSize="12" FontWeight="Bold"/>
+                <ListView Margin="5" Grid.Column="1" Grid.Row="0" ItemsSource="{Binding ValgteFamilie.Pindelisteindkøb}" SelectedItem="{Binding ValgtePindelisteIndkøb}" BorderThickness="0" Name="PindeIndkøb" Width="160" Height="250">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0 10">
+                                <TextBlock Text="{Binding Varetype.Navn}" FontWeight="Bold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Antal, StringFormat= 'Antal: {0}'}"/>
+                                    <TextBlock Text="{Binding Pris, StringFormat= '  Pris: {0},-'}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <Border Padding="5"  Grid.Column="0" Grid.Row="1" BorderBrush="Gray" BorderThickness="0 0 1 0" VerticalAlignment="Top">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding ValgteIndkøb.Navn}" FontWeight="Bold" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding ValgteIndkøb.Pris, StringFormat= 'Pris: {0},-'}" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding ValgteIndkøb.Tidspunkt, StringFormat= 'Oprettet: {0: d/M/y h:m}'}" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding ValgteIndkøb.Beskrivelse}" HorizontalAlignment="Left" Width="160" TextWrapping="Wrap"/>
+                    <TextBlock Text="Tilføj nyt indkøb" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10 5 0 0"/>
+                    <TextBlock Text="Navn" HorizontalAlignment="Left" Margin="10 0 0 0" />
+                    <TextBox Name="NytIndkøbNavn" Text="{Binding NytIndkøbNavn , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                    <TextBlock Text="Pris" Margin="10 5 0 0" HorizontalAlignment="Left"/>
+                    <TextBox Name="NytIndkøbPris" Text="{Binding NytIndkøbPris , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" Margin="10 0 0 0"/>
+                    <TextBlock Text="Beskrivelse" Margin="10 5 0 0" HorizontalAlignment="Left"/>
+                    <TextBox Name="NytIndkøbBeskrivelse" Text="{Binding NytIndkøbBeskrivelse , Mode=TwoWay}" Height="100" TextWrapping="Wrap" Margin="10,0"/>
+                    <Button Content="Tilføj" Width=" 70" HorizontalAlignment="Left" Margin="10 5 0 0" Command="{Binding OpretIndkøbCommand}" CommandParameter="{Binding ValgteFamilie}" />
+                </StackPanel>
+            </Border>
+            <Border Padding="5"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" >
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding ValgtePindelisteIndkøb.Varetype.Navn}" FontWeight="Bold" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ValgtePindelisteIndkøb.Pris, StringFormat= 'Pris: {0},-'}" HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding ValgtePindelisteIndkøb.Antal, StringFormat= '  Antal: {0} '}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <TextBlock Text="{Binding ValgtePindelisteIndkøb.Tidspunkt, StringFormat= 'Oprettet: {0: d/M/y h:m}'}" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding ValgtePindelisteIndkøb.Beskrivelse}" HorizontalAlignment="Left" Width="160" TextWrapping="Wrap"/>
+                    <TextBlock Text="Tilføj pindelisteindkøb" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="10 5 0 0"/>
+                    <TextBlock Text="Pindelistevare" HorizontalAlignment="Left"  Width="108" Margin="10 0 0 0" />
+                    <ComboBox ItemsSource="{Binding Pindelistevarer}" SelectedItem="{Binding ValgtePindelistevare}" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Navn}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Text="Antal" Margin="10,5,0,0" HorizontalAlignment="Left" Width="90"/>
+                    <TextBox Name="NytPindelisteIndkøbAntal" Text="{Binding NytPindelisteIndkøbAntal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                    <TextBlock Text="Pris" Margin="10,5,0,0" HorizontalAlignment="Left" RenderTransformOrigin="1.911,0.387" Width="90"/>
+                    <TextBox Name="NytPindelisteIndkøbPris" Text="{Binding NytPindelisteIndkøbPris , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                    <TextBlock Text="Beskrivelse" Margin="10,5,0,0" HorizontalAlignment="Left" Width="63"/>
+                    <TextBox Name="NytPindelisteBeskrivelse" Text="{Binding NytPindelisteIndkøbBeskrivelse , Mode=TwoWay}" Height="100" TextWrapping="Wrap" Margin="10,0"/>
+                    <Button Content="Tilføj" Width=" 70" HorizontalAlignment="Left" Margin="10 5 0 0" Command="{Binding OpretPindelisteIndkøbCommand}" CommandParameter="{Binding ValgteFamilie}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
 </UserControl>

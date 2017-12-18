@@ -20,12 +20,12 @@ namespace Pindelisten
         /// <summary>
         /// Navnet på varen
         /// </summary>
-        public String Navn { get; set; }
+        public string Navn { get; set; }
 
         /// <summary>
         /// Prisen på varen
         /// </summary>
-        public decimal Pris { get; set; }
+        public int Pris { get; set; }
 
         /// <summary>
         /// Hvor mange der er af varen på lager
@@ -38,9 +38,10 @@ namespace Pindelisten
         /// <summary>
         /// Opretter en vare med et navn
         /// </summary>
-        public Pindelistevare(string navn)
+        public Pindelistevare(string navn, int pris)
         {
             Navn = navn;
+            Pris = pris;
         }
 
         #endregion

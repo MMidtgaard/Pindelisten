@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Pindelisten.PindelistevaretyperView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pindelisten"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:PindelistevaretyperViewModel x:Key="PLVTVM"/>
+    </UserControl.Resources>
+    
+    <Grid DataContext="{Binding Source={StaticResource PLVTVM}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock Text="Pindelistevaretyper"/>
+                <ListBox ItemsSource="{Binding Pindelistevarer}" SelectedItem="{Binding ValgtePindelistevare}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Navn}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="5">
+                <TextBlock Text="{Binding ValgtePindelistevare.Navn}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding ValgtePindelistevare.Pris , StringFormat='Salgspris: {0}'}"/>
+                <TextBlock Text="{Binding ValgtePindelistevare.Lager , StringFormat='Der er {0} på lager'}"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Margin="5" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1">
+            <TextBlock Text="Ny pindelistevare" FontWeight="Bold"/>
+            <TextBlock Text="Navn"/>
+            <TextBox Text="{Binding NyPindelistevareNavn}"/>
+            <TextBlock Text="Pris"/>
+            <TextBox Text="{Binding NyPindelistevarePris}"/>
+            <Button Content="Opret" Command="{Binding OpretPindelistevareCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

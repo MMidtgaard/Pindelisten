@@ -17,17 +17,22 @@ namespace Pindelisten
         /// <summary>
         /// Navn på indkøbet
         /// </summary>
-        public String Navn { get; set; }
+        public string Navn { get; set; }
 
         /// <summary>
         /// Beskrivelse af købet
         /// </summary>
-        public String Beskrivelse { get; set; }
+        public string Beskrivelse { get; set; }
 
         /// <summary>
         /// Tidspunkt for oprettelse af indkøbet i programmet
         /// </summary>
         public DateTime Tidspunkt { get; }
+
+        /// <summary>
+        /// Prisen for indkøbet
+        /// </summary>
+        public decimal Pris { get; set; }
 
         #endregion
 
@@ -37,17 +42,26 @@ namespace Pindelisten
         /// Constructor uden beskrivelse
         /// </summary>
         /// <param name="navn"></param>
+        /// <param name="pris"></param>
 
-        public Indkøb(String navn)
+        public Indkøb(string navn, decimal pris)
         {
             Navn = navn;
+            Pris = pris;
             Tidspunkt = DateTime.Now;
         }
 
-        public Indkøb(String navn, String beskrivelse)
+        /// <summary>
+        /// Constructor med beskrivelse
+        /// </summary>
+        /// <param name="navn"></param>
+        /// <param name="beskrivelse"></param>
+        /// <param name="pris"></param>
+        public Indkøb(string navn, string beskrivelse, decimal pris)
         {
             Navn = navn;
             Beskrivelse = beskrivelse;
+            Pris = pris;
             Tidspunkt = DateTime.Now;
         }
 

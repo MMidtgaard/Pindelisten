@@ -43,12 +43,13 @@
     </UserControl.Resources>
 
     <StackPanel DataContext="{Binding Source={StaticResource PVM}}">
+        <TextBlock Text="Pindelisten" FontWeight="Bold" FontSize="14" TextDecorations="Underline" />
         <StackPanel Orientation="Horizontal">
             <StackPanel>
                 <TextBlock Text="Opret ny familie:" />
                 <StackPanel Orientation="Horizontal" Margin="0 5">
                     <TextBlock Text="Navn:"/>
-                    <TextBox Name="OpretFamilieNavn" Margin="5 0" Text="{Binding NyFamilieNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <TextBox Margin="5 0" Text="{Binding NyFamilieNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
                 </StackPanel>
                 <Button Content="Opret Familie" Command="{Binding OpretFamilieCommand}" CommandParameter="{Binding NyFamilieNavn}" Width="80" HorizontalAlignment="Left" Background="White" BorderBrush="Black" OpacityMask="Black"/>
             </StackPanel>
@@ -58,7 +59,7 @@
                 <DataTemplate>
                     <StackPanel Margin="0 10">
                         <TextBlock Text="{Binding Navn}" FontSize="16" FontWeight="Bold"/>
-                        <ListView Margin="100 0 0 0" ItemsSource="{Binding Pindelistevarer, Source={StaticResource PVM}}">
+                        <ListView Margin="100 0 0 0" BorderThickness="0" ItemsSource="{Binding Pindelistevarer, Source={StaticResource PVM}}">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal"></StackPanel>

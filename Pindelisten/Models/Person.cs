@@ -66,6 +66,7 @@ namespace Pindelisten
         /// <param name="varetyper"></param>
         public void BeregnForbrug(ObservableCollection<Pindelistevare> varetyper)
         {
+            BeregnetForbrug.Clear();
             foreach (Pindelistevare varetype in varetyper)
             {
                 int antal = Forbrug.Count(p => p.Varetype.Equals(varetype));

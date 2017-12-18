@@ -66,14 +66,8 @@ namespace Pindelisten
         /// </summary>
         public PindelisteViewModel()
         {
-
-            //Familier = new ObservableCollection<Familie>();
-            Familier = DataProvider.Familier;
-
-            //Pindelistevarer = new ObservableCollection<Pindelistevare>();
+            Familier = DataProvider.Familier;            
             Pindelistevarer = DataProvider.Pindelistevarer;
-
-            //HentLister();
 
             OpretFamilieCommand = new OpretFamilieCommand(this);
             OpretFamiliemedlemCommand = new OpretFamiliemedlemCommand(this);
@@ -85,23 +79,6 @@ namespace Pindelisten
         #endregion
 
         #region Metoder
-
-        /// <summary>
-        /// Metode der opretter en ny pindeliste og henter listerne til viewet
-        /// </summary>
-        public void HentLister()
-        {
-            Pindeliste pindeliste = new Pindeliste();
-            Familier = pindeliste.Familier;
-            Pindelistevarer = pindeliste.Pindelistevarer;
-            Pindelistevarer.ElementAt(0).Lager = 10;
-        }
-
-        public void SætData()
-        {
-            Familier = DataProvider.Familier;
-            Pindelistevarer = DataProvider.Pindelistevarer;
-        }
 
         public void OpretFamilie(String navn)
         {

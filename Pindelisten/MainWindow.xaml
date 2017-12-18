@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Pindelisten"
         mc:Ignorable="d"
         Title="Pindelisten"
-        Width="Auto" Height="Auto" SizeToContent="WidthAndHeight">
+        Width="400" Height="1000">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -19,42 +19,48 @@
         <DataTemplate DataType = "{x:Type local:IndkøbViewModel}">
             <local:IndkøbView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:PindelistevaretyperViewModel}">
+            <local:PindelistevaretyperView/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Border Margin="10">
-        <StackPanel>
-            <TextBlock Grid.Column="0" Text="Pindelisten" FontFamily="Century Gothic" FontSize="24" FontWeight="Bold"/>
-            <Button Content="Hent data"></Button>
-            <Grid Margin="0 30 0 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height = "Auto" />
-                    <RowDefinition Height = "*" />
-                </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Grid x:Name = "NavBar">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width = "*" />
-                        <ColumnDefinition Width = "*" />
-                        <ColumnDefinition Width = "*" />
-                    </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Grid.Row="0" Margin=" 0 0 0 0">
+                <StackPanel Width="152" HorizontalAlignment="Left">
+                    <TextBlock Text="Data" HorizontalAlignment="Center"/>
+                    <Border Padding="10 5 10 10" BorderThickness="1" BorderBrush="LightGray">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                                <Button Content="Hent" Width="60" Margin="0 0 10 0" Command="{Binding HentDataCommand}" />
+                                <Button Content="Gem" Width="60" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                <Border Padding="5" BorderBrush="DarkGray" BorderThickness="1" Margin="0 10 0 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Margin="0 0 10 0" Content = "Pindeliste" Command = "{Binding NavCommand}" CommandParameter = "Pindeliste" Width="90"/>
 
-                    <Button Content = "Pindeliste" 
-            Command = "{Binding NavCommand}"
-            CommandParameter = "Pindeliste" 
-            Grid.Column = "0" />
+                        <Button Margin="0 0 10 0" Content = "Indkøb" Command = "{Binding NavCommand}" CommandParameter = "Indkøb" Width=" 90"/>
 
-                    <Button Content = "Indkøb" 
-            Command = "{Binding NavCommand}" 
-            CommandParameter = "Indkøb" 
-            Grid.Column = "2" />
-                </Grid>
-
-                <Grid x:Name = "MainContent" Grid.Row = "1">
-                    <ContentControl Content = "{Binding CurrentViewModel}" />
-                </Grid>
-
-            </Grid>
-
-        </StackPanel>
+                        <Button Margin="0 0 10 0" Content = "Varetyper" Command = "{Binding NavCommand}" CommandParameter = "Pindelistevarer" Width=" 90"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Border Grid.Column="0" Grid.Row="1" Padding="5" BorderBrush="DarkGray" BorderThickness="1,0,1,1">
+                <ContentControl Content = "{Binding CurrentViewModel}" />
+            </Border>
+        </Grid>
     </Border>
 </Window>

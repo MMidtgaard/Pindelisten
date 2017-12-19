@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Pindelisten
 {
@@ -34,13 +35,17 @@ namespace Pindelisten
         public MainWindowViewModel()
         {
             HentDataCommand = new HentDataCommand(this);
+            GemDataCommand = new GemDataCommand(this);
             NavCommand = new MyICommand<string>(OnNav);
             CurrentViewModel = pindelisteViewModel;
         }
 
         public void HentData()
         {
-           dataProvider.HentFraFil();
+           bool findes = dataProvider.HentFraFil();
+
+            if(findes == false)
+                MessageBox.Show("Der findes ingen gemt data!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void GemData()

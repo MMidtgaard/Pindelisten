@@ -11,6 +11,7 @@ namespace Pindelisten
     [Serializable]
     public class Familie : INotifyPropertyChanged
     {
+        [field: NonSerializedAttribute()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region Properties

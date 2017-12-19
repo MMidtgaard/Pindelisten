@@ -13,6 +13,7 @@ namespace Pindelisten
     [Serializable]
     public class Pindelistevare : INotifyPropertyChanged
     {
+        [field: NonSerializedAttribute()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region Properties

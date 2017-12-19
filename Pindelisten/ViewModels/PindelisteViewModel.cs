@@ -18,6 +18,7 @@ namespace Pindelisten
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region Properties
+
         /// <summary>
         /// Liste af familier
         /// </summary>
@@ -110,6 +111,7 @@ namespace Pindelisten
             else
             {
                 person.OpretForbrug(pindelistevare);
+                person.BeregnForbrug(Pindelistevarer);
                 pindelistevare.SælgEn();
             }
         }
@@ -124,6 +126,7 @@ namespace Pindelisten
         public void SletForbrug(Person person, Pindelistevare pindelistevare)
         {
             person.SletForbrug(pindelistevare);
+            person.BeregnForbrug(Pindelistevarer);
             pindelistevare.FortrydSalg();
         }
 

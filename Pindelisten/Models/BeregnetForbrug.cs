@@ -14,6 +14,7 @@ namespace Pindelisten
     [Serializable]
     public class BeregnetForbrug : IEquatable<Pindelistevare>, INotifyPropertyChanged
     {
+        [field: NonSerializedAttribute()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region properties

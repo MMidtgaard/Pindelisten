@@ -131,28 +131,26 @@ namespace Pindelisten
 
         public void OpretPindelisteIndkøb(Familie familie)
         {
+            NytPindelisteIndkøbNavn = "";
+            Pindelisteindkøb nytPindelisteindkøb;
+
             if (String.IsNullOrEmpty(NytIndkøbBeskrivelse))
             {
-                NytPindelisteIndkøbNavn = "";
-                familie.Pindelisteindkøb.Add(new Pindelisteindkøb(NytPindelisteIndkøbNavn, NytPindelisteIndkøbPris, ValgtePindelistevare, NytPindelisteIndkøbAntal));
-                ValgtePindelistevare.TilføjVare(NytPindelisteIndkøbAntal);
-                NytPindelisteIndkøbAntal = 0;
-                NytPindelisteIndkøbPris = 0;
-                ValgtePindelistevare = null;
+                nytPindelisteindkøb = new Pindelisteindkøb(NytPindelisteIndkøbNavn, NytPindelisteIndkøbPris, ValgtePindelistevare, NytPindelisteIndkøbAntal);
             }
             else
             {
-                NytPindelisteIndkøbNavn = "";
-                familie.Pindelisteindkøb.Add(new Pindelisteindkøb(NytPindelisteIndkøbNavn, NytPindelisteIndkøbBeskrivelse, NytPindelisteIndkøbPris, ValgtePindelistevare, NytPindelisteIndkøbAntal));
-                ValgtePindelistevare.TilføjVare(NytPindelisteIndkøbAntal);
-                NytPindelisteIndkøbBeskrivelse = "";
-                NytPindelisteIndkøbAntal = 0;
-                NytPindelisteIndkøbPris = 0;
-                ValgtePindelistevare = null;
+                nytPindelisteindkøb = new Pindelisteindkøb(NytPindelisteIndkøbNavn, NytPindelisteIndkøbBeskrivelse, NytPindelisteIndkøbPris, ValgtePindelistevare, NytPindelisteIndkøbAntal);
             }
 
-        }
+            familie.Pindelisteindkøb.Add(nytPindelisteindkøb);
+            ValgtePindelistevare.TilføjVare(NytPindelisteIndkøbAntal);
 
+            NytPindelisteIndkøbAntal = 0;
+            NytPindelisteIndkøbPris = 0;
+            ValgtePindelistevare = null;
+
+        }
         #endregion
     }
 }

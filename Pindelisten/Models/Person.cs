@@ -18,7 +18,7 @@ namespace Pindelisten
         /// <summary>
         /// Personens navn
         /// </summary>
-        public String Navn { get; }
+        public string Navn { get; }
 
         /// <summary>
         /// Liste af forbrug for personen
@@ -76,34 +76,6 @@ namespace Pindelisten
         }
 
         /// <summary>
-        /// Privat metode der opdaterer Beregnet forbrug for en enkelt varetype
-        /// </summary>
-        /// <param name="vareType"></param>
-        private void OpdaterBeregnetForbrug(Pindelistevare vareType)
-        {
-            int antal = Forbrug.Count(p => p.Varetype.Equals(vareType));
-            int beregnetForbrugItem = 0;
-            
-            bool fundet = false;
-            while (fundet == false)
-            {
-                int i = 0;
-                if (BeregnetForbrug.ElementAt(i).Varetype.Navn == vareType.Navn)
-                {
-                    beregnetForbrugItem = i;
-                    fundet = true;
-                }
-                else
-                {
-                    i++;
-                }
-            }
-
-            BeregnetForbrug.ElementAt(beregnetForbrugItem).Antal = antal;
-        }
-
-
-        /// <summary>
         /// Opretter et nyt forbrug for personen
         /// </summary>
         /// <param name="varetype"></param>
@@ -111,15 +83,11 @@ namespace Pindelisten
         {
             Forbrug forbrug = new Forbrug(varetype);
             Forbrug.Insert(0, forbrug);
-
-            OpdaterBeregnetForbrug(varetype);
         }
 
         public void SletForbrug(Pindelistevare varetype)
         {
             Forbrug.Remove(new Forbrug(varetype));
-
-            OpdaterBeregnetForbrug(varetype);
         }
 
         #endregion

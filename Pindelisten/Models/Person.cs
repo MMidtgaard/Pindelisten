@@ -85,6 +85,10 @@ namespace Pindelisten
             Forbrug.Insert(0, forbrug);
         }
 
+        /// <summary>
+        /// Sletter et forbrug fra listen Frobrug baseret på et objekt af typen varetype
+        /// </summary>
+        /// <param name="varetype"></param>
         public void SletForbrug(Pindelistevare varetype)
         {
             Forbrug.Remove(new Forbrug(varetype));

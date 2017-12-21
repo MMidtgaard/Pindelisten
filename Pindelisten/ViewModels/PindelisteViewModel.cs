@@ -32,7 +32,7 @@ namespace Pindelisten
         /// <summary>
         /// Navnet på en ny familie
         /// </summary>
-        public String NyFamilieNavn { get; set; }
+        public string NyFamilieNavn { get; set; }
 
         #endregion
 
@@ -81,7 +81,12 @@ namespace Pindelisten
 
         #region Metoder
 
-        public void OpretFamilie(String navn)
+
+        /// <summary>
+        /// Metode der opretter en familie baseret på en string
+        /// </summary>
+        /// <param name="navn"></param>
+        public void OpretFamilie(string navn)
         {
             bool eksisterer = false;
             if (Familier != null)
@@ -101,10 +106,13 @@ namespace Pindelisten
                 MessageBox.Show("Der findes allerede en familie med det navn!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// Metode der opretter et forbrug for en person
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="pindelistevare"></param>
         public void OpretForbrug(Person person, Pindelistevare pindelistevare)
         {
-            Trace.WriteLine(person.Navn);
-
             if (pindelistevare.Lager==0)
                 MessageBox.Show("Der er ikke flere tilbage af varen!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -116,6 +124,10 @@ namespace Pindelisten
             }
         }
 
+        /// <summary>
+        /// Metode der opretter et familiemedlem
+        /// </summary>
+        /// <param name="familie"></param>
         public void OpretFamiliemedlem(Familie familie)
         {
             bool eksisterer = familie.OpretFamiliemedlem(Pindelistevarer);
@@ -123,6 +135,11 @@ namespace Pindelisten
                 MessageBox.Show("Der findes allerede et familiemedlem med det navn!", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// Metode der sletter et forbrug
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="pindelistevare"></param>
         public void SletForbrug(Person person, Pindelistevare pindelistevare)
         {
             person.SletForbrug(pindelistevare);

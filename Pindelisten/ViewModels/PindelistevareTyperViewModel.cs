@@ -12,6 +12,8 @@ namespace Pindelisten
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Properties
+
         /// <summary>
         /// Liste af pindelistevarer
         /// </summary>
@@ -37,10 +39,18 @@ namespace Pindelisten
         /// </summary>
         public int NyPindelistevarePris { get; set; }
 
+        #endregion
+
+        #region Command
+
         /// <summary>
         /// Command til at oprette en ny pindelistevare
         /// </summary>
         public OpretPindelistevareCommand OpretPindelistevareCommand { get; set; }
+
+        #endregion
+
+        #region Constructor
 
         public PindelistevaretyperViewModel()
         {
@@ -51,8 +61,13 @@ namespace Pindelisten
             OpretPindelistevareCommand = new OpretPindelistevareCommand(this);
         }
 
+        #endregion
+
         #region Metoder
 
+        /// <summary>
+        /// Metode til at oprette en pindelistevare
+        /// </summary>
         public void OpretPindelistevare()
         {
             Pindelistevarer.Add(new Pindelistevare(NyPindelistevareNavn, NyPindelistevarePris));

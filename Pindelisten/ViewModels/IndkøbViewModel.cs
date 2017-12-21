@@ -105,13 +105,17 @@ namespace Pindelisten
 
             OpretIndkøbCommand = new OpretIndkøbCommand(this);
             OpretPindelisteIndkøbCommand = new OpretPindelisteIndkøbCommand(this);
-
         }
 
         #endregion
 
         #region Metoder
 
+
+        /// <summary>
+        /// Metode der opretter et indkøb, baseret på information der er indtastet i View
+        /// </summary>
+        /// <param name="familie"></param>
         public void OpretIndkøb(Familie familie)
         {
             if (String.IsNullOrEmpty(NytIndkøbBeskrivelse))
@@ -129,6 +133,10 @@ namespace Pindelisten
             }
         }
 
+        /// <summary>
+        /// Metode der opretter et Pindelisteindkøb, baseret på information der er indtastet i View
+        /// </summary>
+        /// <param name="familie"></param>
         public void OpretPindelisteIndkøb(Familie familie)
         {
             NytPindelisteIndkøbNavn = "";

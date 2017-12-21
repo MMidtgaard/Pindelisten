@@ -39,20 +39,20 @@ namespace Pindelisten
         #region Metoder
 
         /// <summary>
-        /// Sammenligner et givent objekt 
+        /// Sammenligner et Varetypen på et andet objekt af typen Forbrug, hvis varetypen er ens returneres True.
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(Forbrug other)
-        {
-            if (other == null)
-                return false;
+public bool Equals(Forbrug other)
+{
+    if (other == null)
+        return false;
 
-            if (this.Varetype == other.Varetype)
-                return true;
-            else
-                return false;
-        }
+    if (this.Varetype == other.Varetype)
+        return true;
+    else
+        return false;
+}
         #endregion
     }
 }

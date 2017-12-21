@@ -11,7 +11,7 @@ namespace Pindelisten
     [Serializable]
     public class Familie : INotifyPropertyChanged
     {
-        [field: NonSerializedAttribute()]
+        [field: NonSerialized()]
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region Properties
@@ -19,7 +19,7 @@ namespace Pindelisten
         /// <summary>
         /// Navnet på familien
         /// </summary>
-        public String Navn { get; }
+        public string Navn { get; }
         
         /// <summary>
         /// Medlemmerne af familien
@@ -39,12 +39,16 @@ namespace Pindelisten
         /// <summary>
         /// Holder midlertidigt navn på nyt familiemedlem
         /// </summary>
-        public String NytFamilieMedlemNavn { get; set; }
+        public string NytFamilieMedlemNavn { get; set; }
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// Constructor der sætter navnet på familien og instansierer de tre collections
+        /// </summary>
+        /// <param name="navn"></param>
         public Familie(string navn)
         {
             Navn = navn;

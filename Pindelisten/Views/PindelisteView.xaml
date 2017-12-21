@@ -49,7 +49,7 @@
                 <TextBlock Text="Opret ny familie:" />
                 <StackPanel Orientation="Horizontal" Margin="0 5">
                     <TextBlock Text="Navn:"/>
-                    <TextBox Margin="5 0" Text="{Binding NyFamilieNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <TextBox Margin="5 0" Text="{Binding NyFamilieNavn, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
                 </StackPanel>
                 <Button Content="Opret Familie" Command="{Binding OpretFamilieCommand}" CommandParameter="{Binding NyFamilieNavn}" Width="80" HorizontalAlignment="Left" Background="White" BorderBrush="Black" OpacityMask="Black"/>
             </StackPanel>

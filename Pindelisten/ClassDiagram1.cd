@@ -1,147 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="Pindelisten.IndkøbView" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\IndkøbView.xaml.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Pindelisten.PindelistevaretyperView" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13.25" Y="0.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PindelistevaretyperView.xaml.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Pindelisten.PindelisteView" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.5" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\PindelisteView.xaml.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Pindelisten.GemDataCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\GemDataCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.HentDataCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\HentDataCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.OpretFamilieCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="6" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\OpretFamilieCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.OpretFamiliemedlemCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="6" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\OpretFamiliemedlemCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.OpretForbrugCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="14.75" Y="6" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\OpretForbrugCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Pindelisten.OpretIndkøbCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16.5" Y="6" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\OpretIndkøbCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Pindelisten.OpretPindelisteIndkøbCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="7" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\OpretPindelisteIndkøbCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.OpretPindelistevareCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="7" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\OpretPindelistevareCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.SletForbrugCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="8" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\Commands\SletForbrugCommand.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.IndkøbViewModel" Collapsed="true">
-    <Position X="14.75" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQAAQFAAQAAQBAAACAAAAAAAggAAABIEAACgAAABAAA=</HashCode>
-      <FileName>ViewModels\IndkøbViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Pindelisten.MainWindowViewModel">
-    <Position X="16.75" Y="0.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAIAEABAAEAAIAAAADAAAAAAQAgAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\MainWindowViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Pindelisten.PindelistevaretyperViewModel" Collapsed="true">
-    <Position X="14.75" Y="7" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAEAAEQBAAAAAAAAAAAkgAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ViewModels\PindelistevaretyperViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Pindelisten.PindelisteViewModel" Collapsed="true">
-    <Position X="16.5" Y="7" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>CAAAAAMAAAAQAIAAAAAACAAAggAAAAEAAQEAAAAAABA=</HashCode>
-      <FileName>ViewModels\PindelisteViewModel.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Pindelisten.BeregnetForbrug" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="1.25" Width="1.75" />
+    <Position X="14" Y="4.25" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAAAAAAgE=</HashCode>
       <FileName>Models\BeregnetForbrug.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Pindelisten.Familie" BaseTypeListCollapsed="true">
-    <Position X="6" Y="3.25" Width="2" />
+    <Position X="9.5" Y="0.75" Width="4" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAAAAAAAAAAAgAAgAAAQAAEAAAAAAAgABA=</HashCode>
       <FileName>Models\Familie.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Pindelisten.Forbrug" BaseTypeListCollapsed="true">
-    <Position X="9" Y="4.25" Width="1.5" />
+    <Position X="9.5" Y="7.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAIAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Models\Forbrug.cs</FileName>
@@ -149,40 +25,33 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Pindelisten.Indkøb">
-    <Position X="2" Y="5.5" Width="1.75" />
+    <Position X="6.75" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAAAAAAAAAAgAAAIAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Models\Indkøb.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pindelisten.Person">
-    <Position X="3.75" Y="5.75" Width="1.75" />
+    <Position X="9.5" Y="4.25" Width="4" />
     <TypeIdentifier>
       <HashCode>BAAAAAgAAAAAAIAAAAAAAgQAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pindelisten.Pindelisteindkøb">
-    <Position X="0.75" Y="2" Width="2.5" />
+    <Position X="6.5" Y="3.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgE=</HashCode>
       <FileName>Models\Pindelisteindkøb.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pindelisten.Pindelistevare" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="7.25" Width="1.75" />
+    <Position X="5.5" Y="5.75" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAgCAgAAAAAAGAAAACAAAAAA=</HashCode>
       <FileName>Models\Pindelistevare.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Pindelisten.DataProvider">
-    <Position X="3" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAAAAAAAABAgAAAhAAAAAAAAAQAAA=</HashCode>
-      <FileName>DataAccess\DataProvider.cs</FileName>
-    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

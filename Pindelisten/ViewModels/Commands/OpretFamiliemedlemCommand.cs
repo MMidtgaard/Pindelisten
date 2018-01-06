@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace Pindelisten
             if (parameter != null)
             {
                 Familie familie = (Familie)parameter;
+                Trace.WriteLine(familie.NytFamilieMedlemNavn);
                 if (String.IsNullOrEmpty(familie.NytFamilieMedlemNavn))
                     return false;
 
@@ -38,7 +40,8 @@ namespace Pindelisten
 
         public void Execute(object parameter)
         {
-            ViewModel.OpretFamiliemedlem(parameter as Familie);
+            Familie familie = (Familie)parameter;
+            ViewModel.OpretFamiliemedlem(familie);
         }
     }
 }

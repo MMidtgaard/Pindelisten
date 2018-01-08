@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Pindelisten"
         mc:Ignorable="d"
         Title="Pindelisten"
-        Width="400" Height="1000">
+        Width="400" Height="auto">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -58,9 +58,13 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
-            <Border Grid.Column="0" Grid.Row="1" Padding="5" BorderBrush="DarkGray" BorderThickness="1,0,1,1">
-                <ContentControl Content = "{Binding CurrentViewModel}" />
-            </Border>
+            
+                <Border Grid.Column="0" Grid.Row="1" Padding="5" BorderBrush="DarkGray" BorderThickness="1,0,1,1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ContentControl Content = "{Binding CurrentViewModel}" />
+                    </ScrollViewer>
+                </Border>
+            
         </Grid>
     </Border>
 </Window>

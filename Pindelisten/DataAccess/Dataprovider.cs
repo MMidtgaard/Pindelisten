@@ -25,8 +25,8 @@ namespace Pindelisten
         /// </summary>
         public static ObservableCollection<Familie> Familier = new ObservableCollection<Familie>();
 
-        private string familierFil = Environment.CurrentDirectory + "\\Data\\Familier.dat";
-        private string pindelistevarerFil = Environment.CurrentDirectory + "\\Data\\Pindelistevarer.dat";
+        private string familierFil = Environment.CurrentDirectory + "\\Familier.dat";
+        private string pindelistevarerFil = Environment.CurrentDirectory + "\\Pindelistevarer.dat";
 
         #endregion
 

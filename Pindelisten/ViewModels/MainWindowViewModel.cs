@@ -18,6 +18,8 @@ namespace Pindelisten
 
         private PindelistevaretyperViewModel pindelistevaretyperViewModel = new PindelistevaretyperViewModel();
 
+        private RapportViewModel rapportViewModel = new RapportViewModel();
+
         private BindableBase _CurrentViewModel;
 
         public BindableBase CurrentViewModel
@@ -66,6 +68,9 @@ namespace Pindelisten
                     break;
                 case "Pindelistevarer":
                     CurrentViewModel = pindelistevaretyperViewModel;
+                    break;
+                case "Rapport":
+                    CurrentViewModel = rapportViewModel;
                     break;
             }
         }

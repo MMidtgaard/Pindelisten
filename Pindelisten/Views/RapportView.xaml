@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="Pindelisten.RapportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pindelisten"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:RapportViewModel x:Key="RVM"/>
+        <Style TargetType="ListViewItem">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Red"/>
+            </Style.Resources>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid DataContext="{Binding Source={StaticResource RVM}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView ItemsSource="{Binding Familierapporter}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="DarkGray" BorderThickness="1" Margin="5" Padding="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <StackPanel HorizontalAlignment="Center" Grid.Row="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Familien " FontSize="16"/>
+                                    <TextBlock Text="{Binding Familie.Navn}" FontSize="16" FontWeight="Bold"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                                    <TextBlock Text="Saldo: " FontSize="14"/>
+                                    <TextBlock Text="{Binding Saldo}" FontSize="14"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="Udlæg" FontSize="15" FontWeight="Bold" Grid.Row="1" TextDecorations="Underline" Margin="0 0 0 5"/>
+                            <TextBlock Text="Vare" FontSize="14" FontWeight="Bold" Grid.Row="2" Margin="5 0 0 0"/>
+                            <TextBlock Text="Pris" FontSize="14" FontWeight="Bold" Grid.Row="2" HorizontalAlignment="Right" Margin=" 0 0 7 0"/>
+                            <ListView ItemsSource="{Binding Familie.Indkøb}" BorderThickness="0" Grid.Row="3" Margin=" 0 5 0 0">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="{Binding Navn}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Tidspunkt, StringFormat= ' {0: d/M/y h:m}'}" Grid.Row="1"/>
+                                            <TextBlock Text="{Binding Beskrivelse}" TextWrapping="Wrap" Grid.Row="2" Margin="7 0 0 0"/>
+                                            <TextBlock Text="{Binding Pris, StringFormat= 'Pris: {0},-'}" Grid.Column="1" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Familie.Pindelisteindkøb}" BorderThickness="0" Grid.Row="4">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                                                <TextBlock Text="{Binding Varetype.Navn}" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Antal, StringFormat= '  Antal: {0} '}"/>
+                                                <TextBlock Text="{Binding Tidspunkt, StringFormat= ' {0: d/M/y h:m}'}"/>
+                                                <TextBlock Text="{Binding Beskrivelse}" TextWrapping="WrapWithOverflow"/>
+                                            </StackPanel>
+                                            <TextBlock HorizontalAlignment="Right" Text="{Binding Pris, StringFormat= 'Pris: {0},-'}" Grid.Column="1"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <TextBlock Text="I Alt:" FontWeight="Bold" Grid.Row="5" Margin="7 5 0 0"/>
+                            <TextBlock Text="{Binding UdlægTotal, StringFormat= ' {0},-'}" FontWeight="Bold" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin=" 0 5 2 0" TextDecorations="Underline" />
+                            <TextBlock Text="Forbrug" FontSize="15" FontWeight="Bold" Grid.Row="6" TextDecorations="Underline" Margin="0 10 0 5"/>
+                            <TextBlock Text="Vare" FontSize="14" FontWeight="Bold" Grid.Row="7" Margin="5 0 0 0"/>
+                            <TextBlock Text="Pris" FontSize="14" FontWeight="Bold" Grid.Row="7" HorizontalAlignment="Right" Margin=" 0 0 7 0"/>
+                            <ListView ItemsSource="{Binding Forbrug}" BorderThickness="0" Grid.Row="8" Margin=" 0 5 0 0">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                    <ContentPresenter />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding Pindelistevare.Navn}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Antal, StringFormat= ' {0} styk'}" Grid.Column="1"/>
+                                            <TextBlock Text="af" Grid.Column="2"/>
+                                            <TextBlock Text="{Binding Pindelistevare.Pris, StringFormat= ' {0},-'}" Grid.Column="3"/>
+                                            <TextBlock Text="{Binding BeregnetForbrug, StringFormat= ' {0},-'}" Grid.Column="4" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <TextBlock Text="I Alt:" FontWeight="Bold" Grid.Row="9" Margin="5 5 0 0"/>
+                            <TextBlock Text="{Binding ForbrugTotal, StringFormat= ' {0},-'}" FontWeight="Bold" Grid.Row="10" Grid.Column="1" HorizontalAlignment="Right" Margin=" 0 5 2 0" TextDecorations="Underline" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

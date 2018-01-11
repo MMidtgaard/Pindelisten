@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Pindelisten"
         mc:Ignorable="d"
         Title="Pindelisten"
-        Width="400" Height="auto">
+        Width="450" Height="auto" MinWidth="440">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -22,6 +22,10 @@
 
         <DataTemplate DataType="{x:Type local:PindelistevaretyperViewModel}">
             <local:PindelistevaretyperView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:RapportViewModel}">
+            <local:RapportView/>
         </DataTemplate>
 
     </Window.Resources>
@@ -55,6 +59,8 @@
                         <Button Margin="0 0 10 0" Content = "Indkøb" Command = "{Binding NavCommand}" CommandParameter = "Indkøb" Width=" 90"/>
 
                         <Button Margin="0 0 10 0" Content = "Varetyper" Command = "{Binding NavCommand}" CommandParameter = "Pindelistevarer" Width=" 90"/>
+
+                        <Button Margin="0 0 0 0" Content = "Rapport" Command = "{Binding NavCommand}" CommandParameter = "Rapport" Width=" 90"/>
                     </StackPanel>
                 </Border>
             </StackPanel>

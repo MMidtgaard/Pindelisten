@@ -40,38 +40,27 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel DataContext="{Binding Source={StaticResource PVM}}">
-        <TextBlock Text="Pindelisten" FontWeight="Bold" FontSize="14" TextDecorations="Underline" />
-
-        <StackPanel>
-            <TextBlock Text="Opret ny familie:" />
-            <StackPanel Orientation="Horizontal" Margin="0 5">
-                <TextBlock Text="Navn:"/>
-                <TextBox Margin="5 0" Text="{Binding NyFamilieNavn, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-            </StackPanel>
-            <Button Content="Opret Familie" Command="{Binding OpretFamilieCommand}" CommandParameter="{Binding NyFamilieNavn}" Width="80" HorizontalAlignment="Left" Background="White" BorderBrush="Black" OpacityMask="Black"/>
-        </StackPanel>
-
-        <Border>
-            <StackPanel Orientation="Horizontal">
-                <ListView Margin="57 0 0 0" BorderThickness="0" ItemsSource="{Binding Pindelistevarer, Source={StaticResource PVM}}">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"></StackPanel>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Width="35" Text="{Binding Navn}" HorizontalAlignment="Center" TextAlignment="Center" Margin="5 0"/>
-                                <TextBlock Width="35" Text="{Binding Pris, StringFormat= ' {0},-'}" HorizontalAlignment="Center" TextAlignment="Center" Margin="5 0"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+    <Grid DataContext="{Binding Source={StaticResource PVM}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Pindelisten" FontWeight="Bold" FontSize="22" TextDecorations="Underline" Margin="0 5 0 10" Grid.Row="0"/>
+        <Border BorderBrush="DarkGray" BorderThickness="1" Padding=" 5" Grid.Row="1">
+            <StackPanel>
+                <TextBlock Text="Opret ny familie:" />
+                <StackPanel Orientation="Horizontal" Margin="0 5">
+                    <TextBlock Text="Navn:"/>
+                    <TextBox Margin="5 0" Text="{Binding NyFamilieNavn, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                </StackPanel>
+                <Button Content="Opret Familie" Command="{Binding OpretFamilieCommand}" CommandParameter="{Binding NyFamilieNavn}" Width="80" HorizontalAlignment="Left" Background="White" BorderBrush="Black" OpacityMask="Black"/>
             </StackPanel>
         </Border>
-        <TreeView ItemsSource="{Binding Familier}" BorderThickness="0" Focusable="False" Margin="10 0 10 0">
+        <TreeView ItemsSource="{Binding Familier}" Focusable="False" Grid.Row="2" Padding="-10 10 0 0" VerticalAlignment="Top">
             <TreeView.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
@@ -80,7 +69,7 @@
             </TreeView.Resources>
             <TreeView.ItemTemplate>
                 <DataTemplate>
-                    <TreeViewItem Margin="-10 0 0 10" Width="Auto">
+                    <TreeViewItem Margin="-10 0 0 10" >
                         <TreeViewItem.Resources>
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
@@ -88,27 +77,79 @@
                             <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="Black" />
                         </TreeViewItem.Resources>
                         <TreeViewItem.Header>
-                            <Border BorderBrush="Black" BorderThickness="1">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto" />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding Navn}" FontSize="16" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-                                </Grid>
-                            </Border>
+                            <TextBlock Text="{Binding Navn}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10"/>
                         </TreeViewItem.Header>
-                        <Border BorderBrush="Black" BorderThickness="2" Background="AliceBlue" CornerRadius="5">
+                        <Border BorderBrush="Black" BorderThickness="2" Background="AliceBlue" CornerRadius="5" Margin=" -20 0 0 0">
                             <StackPanel>
-                                <ListView ItemsSource="{Binding Medlemmer}" Padding="10" Background="Transparent">
+                                <Border BorderBrush="DarkGray" BorderThickness="0 0 0 1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="40" Text="Navn" VerticalAlignment="Center" TextAlignment="Left" Margin="15 0 61 0" FontSize="16"/>
+                                        <ListView BorderThickness="0" ItemsSource="{Binding Pindelistevarer, Source={StaticResource PVM}}" Background="Transparent">
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="{x:Type ListViewItem}">
+                                                    <Setter Property="Background" Value="Transparent" />
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                                <ContentPresenter />
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"></StackPanel>
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin=" 4 0 ">
+                                                        <TextBlock Width="35" Text="{Binding Navn}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                                        <TextBlock Width="35" Text="{Binding Pris, StringFormat= ' {0},-'}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </Border>
+                                <ListView ItemsSource="{Binding Medlemmer}" Padding="10" Background="Transparent" BorderThickness="0 0 0 2">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <ContentPresenter />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Navn}" VerticalAlignment="Center" HorizontalAlignment="Left" Width="100"/>
-                                                <ListView ItemsSource="{Binding BeregnetForbrug}" BorderThickness="0" Background="Transparent">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Text="{Binding Navn}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontWeight="Medium" Grid.Column="0"/>
+                                                <ListView ItemsSource="{Binding BeregnetForbrug}" BorderThickness="0" Background="Transparent" Grid.Column="1">
+                                                    <ListView.ItemContainerStyle>
+                                                        <Style TargetType="{x:Type ListViewItem}">
+                                                            <Setter Property="Background" Value="Transparent" />
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                                        <ContentPresenter />
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ListView.ItemContainerStyle>
                                                     <ListView.ItemsPanel>
                                                         <ItemsPanelTemplate>
                                                             <StackPanel Orientation="Horizontal"></StackPanel>
@@ -117,13 +158,13 @@
                                                     <ListView.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackPanel>
-                                                                <Button Style="{StaticResource PlusMinusKnap}" Background="Transparent" BorderThickness="0" Command="{Binding OpretForbrugCommand, Source={StaticResource PVM}}" CommandParameter="{Binding Mode=OneWay}">
+                                                                <Button Style="{StaticResource PlusMinusKnap}" Background="Transparent" BorderThickness="0" Command="{Binding OpretForbrugCommand, Source={StaticResource PVM}}" CommandParameter="{Binding}">
                                                                     <StackPanel>
                                                                         <Image Source="/Billeder/plusS.png" Stretch="Uniform" Width="35" Height="35"></Image>
                                                                     </StackPanel>
                                                                 </Button>
                                                                 <TextBlock Margin="19 10" Text="{Binding Antal}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                                <Button Style="{StaticResource PlusMinusKnap}" Background="Transparent" BorderThickness="0" Command="{Binding SletForbrugCommand, Source={StaticResource PVM}}" CommandParameter="{Binding Mode=OneWay}">
+                                                                <Button Style="{StaticResource PlusMinusKnap}" Background="Transparent" BorderThickness="0" Command="{Binding SletForbrugCommand, Source={StaticResource PVM}}" CommandParameter="{Binding}">
                                                                     <StackPanel>
                                                                         <Image Source="/Billeder/minusS.png" Width="35" Height="35" Stretch="Uniform"></Image>
                                                                     </StackPanel>
@@ -132,7 +173,7 @@
                                                         </DataTemplate>
                                                     </ListView.ItemTemplate>
                                                 </ListView>
-                                            </StackPanel>
+                                            </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
@@ -141,7 +182,7 @@
                                         <TextBlock Text="Nyt Familiemedlem:" Margin="0 5"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="Navn:"/>
-                                            <TextBox Margin="5 0 0 0" Width=" 100" Text="{Binding NytFamilieMedlemNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                            <TextBox Margin="5 0 0 0" Width=" 100" Text="{Binding NytFamilieMedlemNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" MaxLength="13"/>
                                         </StackPanel>
                                         <Button Content="Opret" Width="60" HorizontalAlignment="Left" Background="White" Margin="0 5" Command="{Binding OpretFamiliemedlemCommand, Source={StaticResource PVM}}" CommandParameter="{Binding Mode=OneWay}"/>
                                     </StackPanel>
@@ -152,7 +193,7 @@
                 </DataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-    </StackPanel>
+    </Grid>
 </UserControl>
 
 
